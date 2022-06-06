@@ -12,10 +12,39 @@ const ProductDetails = ({ product, products }) => {
   const [index, setIndex ] = useState(0)
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
+  let stars = 2
+
   const handleBuyNow = () => {
     onAdd(product, qty)
 
     setShowCart(true)
+  }
+
+  const renderStars = () => {
+    let reviews = []
+    if(stars === 5){
+      return (
+        <div>
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+        </div>
+      )
+    } else {
+      for(let i = 0; i < stars; i++) {
+        reviews.push(<AiFillStar key={`filled${i}`}/>)
+      }
+      for(let i = 0; i< 5 - stars; i++) {
+        reviews.push(<AiOutlineStar key={`empty${i}`}/>)
+      }
+      return (
+        <div>
+          {reviews}
+        </div>
+      )
+    }
   }
 
   return (
@@ -41,13 +70,24 @@ const ProductDetails = ({ product, products }) => {
         <div className='product-detail-desc'>
           <h1>{name}</h1>
           <div className='reviews'>
-            <div>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
-            </div>
+            {renderStars()}
+              {/* {stars === 5 ?
+                <div>
+                  <AiFillStar />
+                  <AiFillStar />
+                  <AiFillStar />
+                  <AiFillStar />
+                  <AiFillStar />
+                </div>
+              :
+                <div>
+                  <AiFillStar />
+                  <AiFillStar />
+                  <AiFillStar />
+                  <AiFillStar />
+                  <AiOutlineStar />
+                </div>
+              } */}
             <p>(20)</p>
           </div>
           <h4>Details: </h4>

@@ -35,6 +35,16 @@ export default {
       name: 'details',
       title: 'Details',
       type: 'string',
+    },
+    {
+      name: 'stars',
+      title: 'Stars',
+      type: 'number'
+    },
+    {
+      name: 'reviews',
+      title: 'Reviews',
+      type: 'number'
     }
   ]
 }
