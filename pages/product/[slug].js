@@ -8,12 +8,11 @@ import { Product } from '../../components'
 import { useStateContext } from '../../context/StateContext'
 
 const ProductDetails = ({ product, products }) => {
-  const { image, name, details, price } = product;
+  const { image, name, details, price, stars, reviews } = product;
   const [index, setIndex ] = useState(0)
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
-  let stars = 2
-
+  // let stars = 2
   const handleBuyNow = () => {
     onAdd(product, qty)
 
@@ -21,7 +20,7 @@ const ProductDetails = ({ product, products }) => {
   }
 
   const renderStars = () => {
-    let reviews = []
+    let reviewTotal = []
     if(stars === 5){
       return (
         <div>
@@ -34,14 +33,14 @@ const ProductDetails = ({ product, products }) => {
       )
     } else {
       for(let i = 0; i < stars; i++) {
-        reviews.push(<AiFillStar key={`filled${i}`}/>)
+        reviewTotal.push(<AiFillStar key={`filled${i}`}/>)
       }
       for(let i = 0; i< 5 - stars; i++) {
-        reviews.push(<AiOutlineStar key={`empty${i}`}/>)
+        reviewTotal.push(<AiOutlineStar key={`empty${i}`}/>)
       }
       return (
         <div>
-          {reviews}
+          {reviewTotal}
         </div>
       )
     }
@@ -88,7 +87,7 @@ const ProductDetails = ({ product, products }) => {
                   <AiOutlineStar />
                 </div>
               } */}
-            <p>(20)</p>
+            <p>{reviews}</p>
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
